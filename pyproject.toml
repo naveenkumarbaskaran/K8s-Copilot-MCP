@@ -1,0 +1,35 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "k8s-copilot-mcp"
+version = "0.1.0"
+description = "Give your LLM eyes into your Kubernetes cluster via the Model Context Protocol"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.11"
+authors = [{ name = "Naveen Kumar Baskaran" }]
+keywords = ["kubernetes", "mcp", "llm", "k8s", "devops", "model-context-protocol"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Intended Audience :: System Administrators",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.11",
+]
+dependencies = [
+    "kubernetes>=29.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0", "pytest-asyncio>=0.23"]
+
+[project.scripts]
+k8s-mcp = "k8s_mcp.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/k8s_mcp"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
